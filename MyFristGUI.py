@@ -18,6 +18,16 @@ class MyFirstGUI(wx.Frame):
         self.CreateStatusBar()
         self.SetStatusText("welcome to wxPython")
 
+    # def accelerator(self):
+    #     entries = [wx.AcceleratorEntry() for i in xrange(3)]
+    #     # entries[0].Set(wx.ACCEL_CTRL, 'N', ID_NEW_WINDOW)
+    #     entries[0].Set(wx.ACCEL_CTRL, 'X', wx.ID_EXIT)
+    #     entries[1].Set(wx.ACCEL_SHIFT, 'A', wx.ID_ABOUT)
+    #     entries[2].Set(wx.ACCEL_NORMAL, wx.WXK_DELETE, wx.ID_CUT)
+
+    #     accel = wx.AcceleratorTable(entries)
+    #     self.SetAcceleratorTable(accel)
+
     def makeMenuBar(self):
         fileMenu = wx.Menu()
         helloItem = fileMenu.Append(-1, "&Hello...\tCtrl-H", "Help string shown in status bar for this menu item")
