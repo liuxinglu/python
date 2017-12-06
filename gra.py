@@ -1,5 +1,6 @@
 import turtle
 import math
+import string
 
 class Gra():
     def __init__(self):
@@ -99,79 +100,93 @@ class Gra():
 
     def drawNum(self, num):
         n = Num()
-        if num == 0:
-            n.hUnit(1)
-            n.vUnit(2)
-            n.reposition()
-            n.vUnit(2)
-            n.hUnit(1)
-        elif num == 1:
-            n.passUnit("h", 1)
-            n.vUnit(2)
-        elif num == 2:
-            n.hUnit(1)
-            n.vUnit(1)
-            n.backUnit("h", 1)
-            n.hUnit(1)
-            n.backUnit("h", 1)
-            n.vUnit(1)
-            n.hUnit(1)
-        elif num == 3:
-            for i in range(3):
-                n.hUnit(1)
-                n.passUnit("v", 1)
-                n.backUnit("h", 1)
-            n.backUnit("v", 3)
-            n.passUnit("h", 1)
-            n.vUnit(2)
-        elif num == 4:
-            n.vUnit(1)
-            n.hUnit(1)
-            n.backUnit("v", 1)
-            n.vUnit(2)
-        elif num == 5:
-            n.hUnit(1)
-            n.backUnit("h", 1)
-            n.vUnit(1)
-            n.hUnit(1)
-            n.vUnit(1)
-            n.backUnit("h", 1)
-            n.hUnit(1)
-        elif num == 6:
-            n.hUnit(1)
-            n.backUnit("h", 1)
-            n.vUnit(2)
-            n.backUnit("v", 1)
-            n.hUnit(1)
-            n.vUnit(1)
-            n.backUnit("h", 1)
-            n.hUnit(1)
-        elif num == 7:
-            n.hUnit(1)
-            n.vUnit(2)
-        elif num == 8:
-            for i in range(3):
-                n.hUnit(1)
-                n.passUnit("v", 1)
-                n.backUnit("h", 1)
-            n.backUnit("v", 3)
-            n.vUnit(2)
-            n.passUnit("h", 1)
-            n.backUnit("v", 2)
-            n.vUnit(2)
-        elif num == 9:
-            n.hUnit(1)
-            n.vUnit(2)
-            n.reposition()
-            n.vUnit(1)
-            n.hUnit(1)
-            n.passUnit("v", 1)
-            n.backUnit("h", 1)
-            n.hUnit(1)
+        n.drawNum(num)
+
 
 class Num():
     pen = turtle.Pen()
     unitDis = 2 * math.cos(45) * 10 + 44
+
+    def drawNum(self, num):
+        strnum = str(num)
+        arrlen = len(strnum)
+        for i in range(arrlen):
+            self.drawSplitNum(strnum[i])
+            self.passUnit("h", 1)
+            self.backUnit("v", 2)
+
+
+    def drawSplitNum(self, num):
+        if num == "0":
+            self.hUnit(1)
+            self.vUnit(2)
+            self.reposition()
+            self.vUnit(2)
+            self.hUnit(1)
+        elif num == "1":
+            self.passUnit("h", 1)
+            self.vUnit(2)
+        elif num == "2":
+            self.hUnit(1)
+            self.vUnit(1)
+            self.backUnit("h", 1)
+            self.hUnit(1)
+            self.backUnit("h", 1)
+            self.vUnit(1)
+            self.hUnit(1)
+        elif num == "3":
+            for i in range(3):
+                self.hUnit(1)
+                self.passUnit("v", 1)
+                self.backUnit("h", 1)
+            self.backUnit("v", 3)
+            self.passUnit("h", 1)
+            self.vUnit(2)
+        elif num == "4":
+            self.vUnit(1)
+            self.hUnit(1)
+            self.backUnit("v", 1)
+            self.vUnit(2)
+        elif num == "5":
+            self.hUnit(1)
+            self.backUnit("h", 1)
+            self.vUnit(1)
+            self.hUnit(1)
+            self.vUnit(1)
+            self.backUnit("h", 1)
+            self.hUnit(1)
+        elif num == "6":
+            self.hUnit(1)
+            self.backUnit("h", 1)
+            self.vUnit(2)
+            self.backUnit("v", 1)
+            self.hUnit(1)
+            self.vUnit(1)
+            self.backUnit("h", 1)
+            self.hUnit(1)
+        elif num == "7":
+            self.hUnit(1)
+            self.vUnit(2)
+        elif num == "8":
+            for i in range(3):
+                self.hUnit(1)
+                self.passUnit("v", 1)
+                self.backUnit("h", 1)
+            self.backUnit("v", 3)
+            self.vUnit(2)
+            self.passUnit("h", 1)
+            self.backUnit("v", 2)
+            self.vUnit(2)
+        elif num == "9":
+            self.hUnit(1)
+            self.vUnit(2)
+            self.reposition()
+            self.vUnit(1)
+            self.hUnit(1)
+            self.passUnit("v", 1)
+            self.backUnit("h", 1)
+            self.hUnit(1)
+        
     def reposition(self, unitCount = 2):
         self.pen.left(90)
         self.pen.forward(unitCount * self.unitDis)
@@ -217,8 +232,7 @@ class Num():
             self.pen.fillcolor('yellow')
             self.pen.up()
             self.pen.right(135)
-            self.pen.forward(self.unitDis)
-            
+            self.pen.forward(self.unitDis)            
 
     def vUnit(self, count):
         for i in range(count):
@@ -243,5 +257,5 @@ class Num():
 
 if __name__ == '__main__':
     gra = Gra()
-    gra.drawNum(9)
+    gra.drawNum(2017)
     turtle.mainloop()    
