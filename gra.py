@@ -1,7 +1,11 @@
 import turtle
+import math
 
 class Gra():
     def __init__(self):
+        pass
+
+    def drawGra3(self):
         colors = ['red', 'yellow', 'blue', 'green']
         turtle.bgcolor('black')
         t = turtle.Pen()
@@ -94,15 +98,150 @@ class Gra():
         pen_flower.bye()
 
     def drawNum(self, num):
-        pass
+        n = Num()
+        if num == 0:
+            n.hUnit(1)
+            n.vUnit(2)
+            n.reposition()
+            n.vUnit(2)
+            n.hUnit(1)
+        elif num == 1:
+            n.passUnit("h", 1)
+            n.vUnit(2)
+        elif num == 2:
+            n.hUnit(1)
+            n.vUnit(1)
+            n.backUnit("h", 1)
+            n.hUnit(1)
+            n.backUnit("h", 1)
+            n.vUnit(1)
+            n.hUnit(1)
+        elif num == 3:
+            for i in range(3):
+                n.hUnit(1)
+                n.passUnit("v", 1)
+                n.backUnit("h", 1)
+            n.backUnit("v", 3)
+            n.passUnit("h", 1)
+            n.vUnit(2)
+        elif num == 4:
+            n.vUnit(1)
+            n.hUnit(1)
+            n.backUnit("v", 1)
+            n.vUnit(2)
+        elif num == 5:
+            n.hUnit(1)
+            n.backUnit("h", 1)
+            n.vUnit(1)
+            n.hUnit(1)
+            n.vUnit(1)
+            n.backUnit("h", 1)
+            n.hUnit(1)
+        elif num == 6:
+            n.hUnit(1)
+            n.backUnit("h", 1)
+            n.vUnit(2)
+            n.backUnit("v", 1)
+            n.hUnit(1)
+            n.vUnit(1)
+            n.backUnit("h", 1)
+            n.hUnit(1)
+        elif num == 7:
+            n.hUnit(1)
+            n.vUnit(2)
+        elif num == 8:
+            for i in range(3):
+                n.hUnit(1)
+                n.passUnit("v", 1)
+                n.backUnit("h", 1)
+            n.backUnit("v", 3)
+            n.vUnit(2)
+            n.passUnit("h", 1)
+            n.backUnit("v", 2)
+            n.vUnit(2)
+        elif num == 9:
+            n.hUnit(1)
+            n.vUnit(2)
+            n.reposition()
+            n.vUnit(1)
+            n.hUnit(1)
+            n.passUnit("v", 1)
+            n.backUnit("h", 1)
+            n.hUnit(1)
 
 class Num():
-    def hUnit(n):
-        pen = turtle.Pen()
-        for i in range(n)
-            pass
+    pen = turtle.Pen()
+    unitDis = 2 * math.cos(45) * 10 + 44
+    def reposition(self, unitCount = 2):
+        self.pen.left(90)
+        self.pen.forward(unitCount * self.unitDis)
+        self.pen.left(90)
+        self.pen.forward(self.unitDis)
+        self.pen.right(180)
+
+    def passUnit(self, dir, count):
+        self.pen.up()
+        if dir == "h":
+            self.pen.forward(count * self.unitDis)
+        elif dir == "v":
+            self.pen.right(90)
+            self.pen.forward(count * self.unitDis)
+            self.pen.left(90)
+    
+    def backUnit(self, dir, count):
+        self.pen.up()
+        if dir == "h":
+            self.pen.left(180)
+            self.pen.forward(count * self.unitDis)
+            self.pen.right(180)
+        elif dir == "v":
+            self.pen.left(90)
+            self.pen.forward(count * self.unitDis)
+            self.pen.right(90)
+
+    def hUnit(self, count):
+        for i in range(count):
+            self.pen.down()
+            self.pen.left(45)
+            self.pen.forward(10)
+            self.pen.right(45)
+            self.pen.forward(40)
+            self.pen.right(45)
+            self.pen.forward(10)
+            self.pen.right(90)
+            self.pen.forward(10)
+            self.pen.right(45)
+            self.pen.forward(40)
+            self.pen.right(45)
+            self.pen.forward(10)
+            self.pen.fillcolor('yellow')
+            self.pen.up()
+            self.pen.right(135)
+            self.pen.forward(self.unitDis)
             
+
+    def vUnit(self, count):
+        for i in range(count):
+            self.pen.down()
+            self.pen.right(45)
+            self.pen.forward(10)
+            self.pen.right(45)
+            self.pen.forward(40)
+            self.pen.right(45)
+            self.pen.forward(10)
+            self.pen.right(90)
+            self.pen.forward(10)
+            self.pen.right(45)
+            self.pen.forward(40)
+            self.pen.right(45)
+            self.pen.forward(10)
+            self.pen.fillcolor('yellow')
+            self.pen.up()
+            self.pen.right(135)
+            self.pen.forward(self.unitDis)
+            self.pen.left(90)
 
 if __name__ == '__main__':
     gra = Gra()
+    gra.drawNum(9)
     turtle.mainloop()    
