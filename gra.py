@@ -99,13 +99,16 @@ class Gra():
         pen_flower.bye()
 
     def drawNum(self, num):
-        n = Num()
+        pen = turtle.Pen()
+        pen.pensize(2)
+        n = Num(pen)
         n.drawNum(num)
 
 
 class Num():
-    pen = turtle.Pen()
-    unitDis = 2 * math.cos(45) * 10 + 44
+    def __init__(self, pen):
+        self.pen = pen
+    unitDis = 2 * math.cos(45) * 10 + 43
 
     def drawNum(self, num):
         strnum = str(num)
@@ -257,5 +260,5 @@ class Num():
 
 if __name__ == '__main__':
     gra = Gra()
-    gra.drawNum(2017)
+    gra.drawNum(2)
     turtle.mainloop()    
