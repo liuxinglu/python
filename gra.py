@@ -1,10 +1,11 @@
 import turtle
 import math
 import string
+import time
 
 class Gra():
     def __init__(self):
-        pass
+        self.pen = turtle.Pen()
 
     def drawGra3(self):
         colors = ['red', 'yellow', 'blue', 'green']
@@ -99,10 +100,12 @@ class Gra():
         pen_flower.bye()
 
     def drawNum(self, num):
-        pen = turtle.Pen()
-        pen.pensize(2)
-        n = Num(pen)
+        self.pen.pensize(2)
+        n = Num(self.pen)
         n.drawNum(num)
+
+    def clearPen(self):
+        self.pen.reset()
 
 
 class Num():
@@ -138,12 +141,12 @@ class Num():
             self.vUnit(1)
             self.hUnit(1)
         elif num == "3":
-            for i in range(3):
-                self.hUnit(1)
+            self.hUnit(1)
+            for i in range(2):
                 self.passUnit("v", 1)
                 self.backUnit("h", 1)
-            self.backUnit("v", 3)
-            self.passUnit("h", 1)
+                self.hUnit(1)
+            self.backUnit("v", 2)
             self.vUnit(2)
         elif num == "4":
             self.vUnit(1)
@@ -171,13 +174,14 @@ class Num():
             self.hUnit(1)
             self.vUnit(2)
         elif num == "8":
-            for i in range(3):
-                self.hUnit(1)
+            self.hUnit(1)
+            for i in range(2):
                 self.passUnit("v", 1)
                 self.backUnit("h", 1)
-            self.backUnit("v", 3)
+                self.hUnit(1)
+            self.backUnit("v", 2)
             self.vUnit(2)
-            self.passUnit("h", 1)
+            self.backUnit("h", 1)
             self.backUnit("v", 2)
             self.vUnit(2)
         elif num == "9":
@@ -260,5 +264,7 @@ class Num():
 
 if __name__ == '__main__':
     gra = Gra()
-    gra.drawNum(2)
+    for i in range(10):
+        gra.drawNum(i*11)
+        gra.clearPen()
     turtle.mainloop()    
