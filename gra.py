@@ -2,6 +2,8 @@ import turtle
 import math
 import string
 import time
+import Tkinter
+import json
 
 class Gra():
     def __init__(self):
@@ -267,4 +269,4 @@ if __name__ == '__main__':
     for i in range(10):
         gra.drawNum(i*11)
         gra.clearPen()
-    turtle.mainloop()    
+    turtle.mainloop()   
