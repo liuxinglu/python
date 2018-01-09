@@ -57,10 +57,10 @@ while True:
 
     if key_flag:
         print_text(font1, 450, 0, "you are keying.");
-    if not game_over:
+    if game_over:
         print_text(font1, 0, 80, "Time: " + str(int(seconds - current)));
-    else:
-        print_text(font1, 0, 100, "Speed: " + str(speed) + "letters/min");
+    # else:
+    print_text(font1, 0, 100, "Speed: " + str(speed) + "letters/min");
 
     if game_over:
         print_text(font2, 0, 240, chr(correct_answer - 32), yellow);
