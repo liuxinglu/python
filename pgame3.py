@@ -23,7 +23,7 @@ correct_answer = 97;
 seconds = 10;
 score = 0;
 clock_start = 0;
-game_over = True;
+game_start = True;
 
 while True:
     for event in pygame.event.get():
@@ -38,15 +38,15 @@ while True:
     if keys[K_ESCAPE]:
         sys.exit();
     if keys[K_RETURN]:
-        if game_over:
-            game_over = False;
+        if game_start:
+            game_start = False;
             score = 0;
             seconds = 11;
             clock_start = time.clock();
     current = time.clock() - clock_start;
     speed = score * 6;
     if seconds - current < 0:
-        game_over = True;
+        game_start = True;
     elif current:
         if keys[correct_answer]:
             correct_answer = random.randint(97, 122);
@@ -57,11 +57,11 @@ while True:
 
     if key_flag:
         print_text(font1, 450, 0, "you are keying.");
-    if game_over:
+    if game_start:
         print_text(font1, 0, 80, "Time: " + str(int(seconds - current)));
-    # else:
+    
     print_text(font1, 0, 100, "Speed: " + str(speed) + "letters/min");
 
-    if game_over:
+    if game_start:
         print_text(font2, 0, 240, chr(correct_answer - 32), yellow);
     pygame.display.update();
