@@ -31,21 +31,23 @@ def xlsx2json_1():
 
 def xlsx2json_2():
     wb = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
-    convert_list = []
-    sh = wb.sheet_by_index(0)
-    title = sh.row_values(1)
-    for rownum in range(2, sh.nrows):
-        rowvalue = sh.row_values(rownum)
-        single = OrderedDict()
-        for colnum in range(1, len(rowvalue)):
-            single[title[colnum]] = rowvalue[colnum]
-        convert_list.append(single)
+    shArr = wb.sheet_names()
+    for shname in shArr:
+        convert_list = []
+        sh = wb.sheet_by_name(shname)
+        title = sh.row_values(1)
+        for rownum in range(2, sh.nrows):
+            rowvalue = sh.row_values(rownum)
+            single = OrderedDict()
+            for colnum in range(1, len(rowvalue)):
+                single[title[colnum]] = rowvalue[colnum]
+            convert_list.append(single)
 
-    j = json.dumps(convert_list, ensure_ascii=False)
+        j = json.dumps(convert_list, ensure_ascii=False)
 
-    with codecs.open('/Users/star_xlliu/Documents/file.json', "w", "utf-8") as f:
-        f.write(j)
-        f.close()
+        with codecs.open('/Users/star_xlliu/Documents/' + shname + '.json', "w", "utf-8") as f:
+            f.write(j)
+            f.close()
 
 xlsx2json_2()
 # print "你好";
