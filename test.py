@@ -1,5 +1,53 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+import sys
+import locale
+import xlrd
+import xlwt
+import json
+import codecs
+from collections import OrderedDict
+
+def xlsx2json_1():
+    data = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
+    tblsh = data.sheets()[0]
+    rownum = tblsh.nrows
+    colnum = tblsh.ncols
+    totalArray = []
+    arr = []
+    for i in range(0, colnum):
+        arr.append(tblsh.cell(1, i).value)
+
+    for row_index in range(2, rownum):
+        dic = {}
+        for col_index in range(0, colnum):
+            s = tblsh.cell(row_index, col_index).value
+            dic[arr[col_index]] = s
+        totalArray.append(dic)
+    a = json.dumps(totalArray, ensure_ascii=False)
+    file = codecs.open('/Users/star_xlliu/Documents/file.json', "w", "utf-8")
+    file.write(a)
+    file.close()
+
+def xlsx2json_2():
+    wb = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
+    convert_list = []
+    sh = wb.sheet_by_index(0)
+    title = sh.row_values(1)
+    for rownum in range(2, sh.nrows):
+        rowvalue = sh.row_values(rownum)
+        single = OrderedDict()
+        for colnum in range(1, len(rowvalue)):
+            single[title[colnum]] = rowvalue[colnum]
+        convert_list.append(single)
+
+    j = json.dumps(convert_list, ensure_ascii=False)
+
+    with codecs.open('/Users/star_xlliu/Documents/file.json', "w", "utf-8") as f:
+        f.write(j)
+        f.close()
+
+xlsx2json_2()
 # print "你好";
 # raw_input("\n\nPress the Enter key to exit");
 # count = 0
@@ -9,32 +57,32 @@
 # else :
 #     print count, "is not less than 5"
 
-import random
-import sys
-import time
+# import random
+# import sys
+# import time
 
-result = []
-while True :
-    result.append(int(random.uniform(1, 7)))
-    result.append(int(random.uniform(1, 7)))
-    result.append(int(random.uniform(1, 7)))
-    print result
-    count = 0
-    index = 2
-    pointStr = ""
-    while index >= 0:
-        currPoint = result[index]
-        count += currPoint
-        index -= 1
-        pointStr += " "
-        pointStr += str(currPoint)
-    if count <= 11:
-        sys.stdout.write(pointStr + " -> " + "小" + "\n")
-        time.sleep(1)
-    else:
-        sys.stdout.write(pointStr + " -> " + "大" + "\n")
-        time.sleep(1)
-    result = []
+# result = []
+# while True :
+#     result.append(int(random.uniform(1, 7)))
+#     result.append(int(random.uniform(1, 7)))
+#     result.append(int(random.uniform(1, 7)))
+#     print result
+#     count = 0
+#     index = 2
+#     pointStr = ""
+#     while index >= 0:
+#         currPoint = result[index]
+#         count += currPoint
+#         index -= 1
+#         pointStr += " "
+#         pointStr += str(currPoint)
+#     if count <= 11:
+#         sys.stdout.write(pointStr + " -> " + "小" + "\n")
+#         time.sleep(1)
+#     else:
+#         sys.stdout.write(pointStr + " -> " + "大" + "\n")
+#         time.sleep(1)
+#     result = []
 
 # class Employee:
 #     '所有员工的基类'
@@ -90,3 +138,75 @@ while True :
 
 # listb.pack()
 # listb2.pack()
+
+# width = input("please enter width");
+# price_width = 10;
+# item_width = width - price_width;
+# header_format = '%-*s%*s';
+# format = '%-*s%*.2f';
+# print '=' * width;
+# print header_format %  (item_width, 'Item', price_width, 'Price');
+
+# def lookup(data, label, name):
+#     return data[label].get(name);
+
+# def store(data, *full_names):
+#     for full_name in full_names:
+#         names = full_name.split();
+#         if len(names) == 2:
+#             names.insert(1, " ");
+#         labels = 'first', 'middle', 'last';
+#         for label, name in zip(labels, names):
+#             people = lookup(data, label, name);
+#             if people:
+#                 people.append(full_name);
+#             else:
+#                 data[label][name] = [full_name];
+
+
+# def init(data):
+#     data['first'] = {};
+#     data['middle'] = {};
+#     data['last'] = {};
+          
+# d = {};
+# init(d);
+# store(d, 'Han Solo', 'Luke Sky', 'Luke Sky', 'Anake Walker')
+# print lookup(d, 'first', 'Luke');
+
+
+# a, b = 13, 42;
+# while a != b:
+#     if a > b:
+#         a = a - b;
+#     else:
+#         b = b - a;
+# print a;
+# str = '''<td></td>, <td></td>, <td style="display: none"></td>, <td class="text - left">
+# 总计
+# </td > , < td class = "" > 0.00 < /td > , < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = "" >
+# 0.00
+# </td >, < td class = " va-bg-com-total" >
+# 0.00
+# </td >, < td class = " va-bg-com-upper" >
+# 0.00
+# </td >''';
+# x = 1;
+# scope = vars();
+# print scope['x']
+
+# foo = lambda x: x*x
+# print foo(2)
+
