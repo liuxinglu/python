@@ -1,55 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-import sys
-import locale
-import xlrd
-import xlwt
-import json
-import codecs
-from collections import OrderedDict
 
-def xlsx2json_1():
-    data = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
-    tblsh = data.sheets()[0]
-    rownum = tblsh.nrows
-    colnum = tblsh.ncols
-    totalArray = []
-    arr = []
-    for i in range(0, colnum):
-        arr.append(tblsh.cell(1, i).value)
-
-    for row_index in range(2, rownum):
-        dic = {}
-        for col_index in range(0, colnum):
-            s = tblsh.cell(row_index, col_index).value
-            dic[arr[col_index]] = s
-        totalArray.append(dic)
-    a = json.dumps(totalArray, ensure_ascii=False)
-    file = codecs.open('/Users/star_xlliu/Documents/file.json', "w", "utf-8")
-    file.write(a)
-    file.close()
-
-def xlsx2json_2():
-    wb = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
-    shArr = wb.sheet_names()
-    for shname in shArr:
-        convert_list = []
-        sh = wb.sheet_by_name(shname)
-        title = sh.row_values(1)
-        for rownum in range(2, sh.nrows):
-            rowvalue = sh.row_values(rownum)
-            single = OrderedDict()
-            for colnum in range(1, len(rowvalue)):
-                single[title[colnum]] = rowvalue[colnum]
-            convert_list.append(single)
-
-        j = json.dumps(convert_list, ensure_ascii=False)
-
-        with codecs.open('/Users/star_xlliu/Documents/' + shname + '.json', "w", "utf-8") as f:
-            f.write(j)
-            f.close()
-
-xlsx2json_2()
 # print "你好";
 # raw_input("\n\nPress the Enter key to exit");
 # count = 0
