@@ -85,7 +85,7 @@ def readFromJson(path):
         jsonData = json.load(f)
     return jsonData
 
-def jsonpath2xlsx(path):
+def jsonPath2xlsx(path):
     filePaths = os.listdir(path)
     sheetArr = []
     excel = openpyxl.Workbook()
@@ -97,13 +97,11 @@ def jsonpath2xlsx(path):
     for item in filePaths:
         data = readFromJson(path + item)
         length = len(data)
-        i = 0
-        j = 0
+        i, j = 0, 0
         line0 = data[0]
         for k, v in line0.items():
             j += 1
             sheetArr[index].cell(row=1, column=j, value=k)
-        
         while i < length:
             eachLine = data[i]
             j = 0
@@ -115,4 +113,4 @@ def jsonpath2xlsx(path):
     excel.save("/Users/star_xlliu/Documents/test3.xlsx")
 
 
-jsonpath2xlsx('/Users/star_xlliu/Documents/json/');
+jsonPath2xlsx('/Users/star_xlliu/Documents/json/');

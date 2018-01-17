@@ -1,25 +1,5 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
-if __name__ == '__main__':
-    s = '中国'
-    su = u'中国'
-
-    # #s为unicode先转为utf-8
-
-    # #因为s为所在的.py(# -*- coding=UTF-8 -*-)编码为utf-8
-
-    s_unicode = s.decode('UTF-8')
-
-    print (s_unicode == su)
-
-    # #s转为gb2312,先转为unicode再转为gb2312
-
-    s.decode('utf-8').encode('gb2312')
-
-    #如果直接执行s.encode('gb2312')会发生什么？
-
-    # s.encode('utf-8')
 # raw_input("\n\nPress the Enter key to exit");
 # count = 0
 # while count < 5 :
