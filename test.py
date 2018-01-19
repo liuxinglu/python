@@ -133,27 +133,7 @@
 #     else:
 #         b = b - a;
 # print a;
-# str = '''<td></td>, <td></td>, <td style="display: none"></td>, <td class="text - left">
-# 总计
-# </td > , < td class = "" > 0.00 < /td > , < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = "" >
-# 0.00
-# </td >, < td class = " va-bg-com-total" >
-# 0.00
-# </td >, < td class = " va-bg-com-upper" >
-# 0.00
-# </td >''';
+
 # x = 1;
 # scope = vars();
 # print scope['x']
@@ -161,3 +141,50 @@
 # foo = lambda x: x*x
 # print foo(2)
 
+# class MyClass:
+#     abb = 1
+#     def __init__(args):
+#         pass
+
+#     @staticmethod
+#     def smeth():
+#         print '静态方法'
+
+#     @classmethod
+#     def cmeth(cls):
+#         print 'this is a class method of ', cls
+#         del cls.abb
+
+#     def fun1(self):
+#         try:
+#             self.ab = self.abb + 1
+#         except TypeError:
+#             self.ab = 0
+#         print self.ab
+#         del self.abb
+
+#     def __delattr__(self, name):
+#         print "删除" + name;
+
+#     def __getattr__(self, name):
+#         print "访问" + name
+    
+#     def __setattr__(self, name, value):
+#         print "设置" + name + "=" + str(value)
+
+#     def __str__(self):
+#         print "字符串"
+    
+
+# m = MyClass()
+# m.fun1()
+
+def flatten(nested):
+    try:
+        for sublist in nested:
+            for element in flatten(sublist):
+                yield element
+    except TypeError:
+        yield nested
+nested = [[[1, 2]], [3, 4], [5]]
+print list(flatten(nested))
