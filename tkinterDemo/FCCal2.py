@@ -62,7 +62,7 @@ class GUICal:
         self.root.destroy()
 
 
-class CCCal:
+class Cal:
     def __init__(self):
         self.xRate = {"USD": 6.306, "Euro": 8.2735,
                       "Yen": 0.0775, "Pound": 10.0486}
@@ -75,5 +75,5 @@ class CCCal:
 
 
 if __name__ == '__main__':
-    cc = CCCal()
+    cc = Cal()
     inter = GUICal(cc)

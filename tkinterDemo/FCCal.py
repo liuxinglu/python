@@ -3,9 +3,9 @@ from Tkinter import *
 
 
 class GUICal:
-    def __init__(self, app):
+    def __init__(self, cal):
         self.root = Tk()
-        self.app = app
+        self.cal = cal
         self.root.title("Currency Converter")
         self.fc = StringVar()
         self.fc.set("USD")
@@ -34,10 +34,10 @@ class GUICal:
     def showInfo(self):
         rStr = "%.2f"
         if self.to == "RMB":
-            r = self.app.calRMB(self.fc.get(), self.amt)
+            r = self.cal.calRMB(self.fc.get(), self.amt)
             self.aRMB.set(rStr % r)
         else:
-            r = self.app.calFC(self.fc.get(), self.amt)
+            r = self.cal.calFC(self.fc.get(), self.amt)
             self.aFC.set(rStr % r)
 
     def toRMB(self):
@@ -54,7 +54,7 @@ class GUICal:
         self.root.quit()
         self.root.destroy()
 
-class CCApp:
+class Cal:
     def __init__(self):
         self.xRate = {"USD":6.306, "Euro":8.2735, "Yen":0.0775, "Pound":10.0486}
 
@@ -66,5 +66,5 @@ class CCApp:
 
 
 if __name__ == '__main__':
-    cc = CCApp()
+    cc = Cal()
     inter = GUICal(cc);
