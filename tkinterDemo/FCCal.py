@@ -7,7 +7,6 @@ class GUICal:
         self.root = Tk()
         self.app = app
         self.root.title("Currency Converter")
-        self.qFlag = False
         self.fc = StringVar()
         self.fc.set("USD")
         self.to = "RMB"
@@ -52,7 +51,6 @@ class GUICal:
         self.showInfo()
 
     def close(self):
-        self.qFlag = True
         self.root.quit()
         self.root.destroy()
 
