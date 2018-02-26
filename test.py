@@ -283,6 +283,10 @@ class SongBird(Bird):
 
 
 nested = [[[1, "test"]], [3, 4], [5]]
+nested1 = [1,2,3]
+nested2 = [4,5,6,7,8]
+nested3 = [9,10,11]
+
 def main1(nest):
     for sub in nest:
         for item in sub:
@@ -291,6 +295,8 @@ def main1(nest):
 if __name__ == '__main__':
     # for num in main1(nested):
     #     print type(num)
-    m = main1(nested)
-    print m.next()
-    print m.next()
+    # m = main1(nested)
+    # print m.next()
+    # print m.next()
+    for i in nested, nested1, nested2, nested3:
+        print i
