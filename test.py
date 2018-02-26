@@ -141,50 +141,156 @@
 # foo = lambda x: x*x
 # print foo(2)
 
-# class MyClass:
-#     abb = 1
-#     def __init__(args):
-#         pass
+class MyClass:
+    abb = 1
+    def __init__(args):
+        pass
 
-#     @staticmethod
-#     def smeth():
-#         print '静态方法'
+    @staticmethod
+    def smeth():
+        print '静态方法'
 
-#     @classmethod
-#     def cmeth(cls):
-#         print 'this is a class method of ', cls
-#         del cls.abb
+    @classmethod
+    def cmeth(cls):
+        print 'this is a class method of ', cls
+        del cls.abb
 
-#     def fun1(self):
-#         try:
-#             self.ab = self.abb + 1
-#         except TypeError:
-#             self.ab = 0
-#         print self.ab
-#         del self.abb
+    def fun1(self):
+        try:
+            self.ab = self.abb + 1
+        except TypeError:
+            self.ab = 0
+        print self.ab
+        del self.abb
 
-#     def __delattr__(self, name):
-#         print "删除" + name;
+    def __delattr__(self, name):
+        print "删除" + name;
 
-#     def __getattr__(self, name):
-#         print "访问" + name
+    def __getattr__(self, name):
+        print "访问" + name
     
-#     def __setattr__(self, name, value):
-#         print "设置" + name + "=" + str(value)
+    def __setattr__(self, name, value):
+        print "设置" + name + "=" + str(value)
 
-#     def __str__(self):
-#         print "字符串"
+    def __str__(self):
+        print "字符串"
     
 
 # m = MyClass()
 # m.fun1()
 
-def flatten(nested):
-    try:
-        for sublist in nested:
-            for element in flatten(sublist):
-                yield element
-    except TypeError:
-        yield nested
-nested = [[[1, 2]], [3, 4], [5]]
-print list(flatten(nested))
+# def flatten(nested):
+#     try:
+#         try:
+#             nested + ""
+#         except TypeError:
+#             print nested
+#             pass
+#         else:
+#             print "主动生成异常"
+#             raise TypeError
+#         for sublist in nested:
+#             for element in flatten(sublist):
+#                 yield element
+#     except TypeError:
+#         print "外层" + str(nested)
+#         yield nested
+
+# print list(flatten(nested))
+
+import time
+import functools
+
+def log1(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print 'call %s():'% func.__name__
+        return func(*args, **kw)
+    return wrapper
+
+def log2(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print '%s %s():' % (text, func.__name__)
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+
+def log3(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print '%s begin call %s():'% (time.asctime(), func.__name__)
+        func(*args, **kw)
+        print '%s end call %s()'% (time.asctime(), func.__name__)
+    return wrapper
+
+def log4(text):
+    if isinstance(text, str) == False:
+        @functools.wraps(text)
+        def wrapper(*args, **kw):
+            print '%s begin call %s():' % (time.asctime(), text.__name__)
+            text(*args, **kw)
+            print '%s end call %s()' % (time.asctime(), text.__name__)
+        return wrapper
+    else:
+        def decorator(func):
+            @functools.wraps(func)
+            def wrapper(*args, **kw):
+                print '%s %s():' % (text, func.__name__)
+                return func(*args, **kw)
+            return wrapper
+        return decorator
+
+@log4
+def now(num):
+    sum = 1
+    for i in range(1,num):
+        sum = sum * i
+    print sum
+
+
+# now(10)
+
+# fun = log2('exe')(now)
+# fun()
+
+
+# def fun(*l):
+    
+#     print l
+
+# fun(1,2,3)
+__metaclass__ = type
+class Bird(object):
+    def __init__(self):
+        self.hungry = True
+    
+    def eat(args):
+        if args.hungry:
+            print 'Aaaah~~'
+            args.hungry = False
+        else:
+            print 'No Thanks'
+
+class SongBird(Bird):
+    def __init__(self, *args):
+        # super(SongBird,Bird.__init__(self,*args))
+        super(SongBird, self).__init__()
+        self.sound = 'Squak'
+    def sing(args):
+        print args.sound
+
+
+nested = [[[1, "test"]], [3, 4], [5]]
+def main1(nest):
+    for sub in nest:
+        for item in sub:
+            yield item
+
+if __name__ == '__main__':
+    # for num in main1(nested):
+    #     print type(num)
+    m = main1(nested)
+    print m.next()
+    print m.next()

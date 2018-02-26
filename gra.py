@@ -8,6 +8,33 @@ import json
 class Gra():
     def __init__(self):
         self.pen = turtle.Pen()
+        self.rgb_r = 0
+        self.rgb_g = 0
+        self.rgb_b = 0
+        colormode(255)
+
+    def drawAniCircle(self):
+        self.pen.pencolor((self.rgb_r, self.rgb_g, self.rgb_b))
+        self.pen.pensize(4)
+        while True:
+            self.pen.clear()
+            self.drawCir()
+
+
+    def drawCir(self):
+        self.pen.down()
+        r = 0
+        
+        while r < 12:
+            self.pen.forward(r)
+            self.pen.right(5)
+            r = r + 0.02
+            self.rgb_r = (self.rgb_r + 1) % 255
+            self.rgb_g = (self.rgb_g + 1) % 255
+            self.rgb_b = (self.rgb_b + 1) % 255
+            self.pen.pencolor((self.rgb_r, self.rgb_g, self.rgb_b))
+        self.pen.up()
+        
 
     def drawGra3(self):
         colors = ['red', 'yellow', 'blue', 'green']
@@ -63,13 +90,13 @@ class Gra():
         r = 1
         i = 0
         while i < 180:
-            self.drawCircle(t, r)
+            self.__drawCircle(t, r)
             r = r + 0.1
             t.left(6)
             i = i + 1
         t.bye()
     
-    def drawCircle(self, t_pen, r_num):
+    def __drawCircle(self, t_pen, r_num):
         i_circle = 0
         t_pen.down()
         while i_circle < 36:
@@ -78,26 +105,27 @@ class Gra():
             i_circle = i_circle + 1
         t_pen.up()
 
-    def drawFlower(self, flowerNum, jiaodu, r):
+    def drawFlower(self, flowerNum, jiaodu, r = 5):
         pen_flower = turtle.Pen()
         pen_flower.down()
         while r > 2:
-            i_n = 0
-            while i_n < flowerNum:
-                i_t = 0
-                while i_t < 18:
+            i_curFlowerNum = 0
+            while i_curFlowerNum < flowerNum:
+                i_size = 18
+                i_curSize = 0
+                while i_curSize < i_size:
                     pen_flower.forward(r)
-                    pen_flower.right(jiaodu / 18)
-                    i_t = i_t + 1
+                    pen_flower.right(jiaodu / i_size)
+                    i_curSize = i_curSize + 1
                 pen_flower.right(180 - jiaodu)
-                i_t = 0
-                while i_t < 18:
+                i_curSize = 0
+                while i_curSize < i_size:
                     pen_flower.forward(r)
-                    pen_flower.right(jiaodu / 18)
-                    i_t = i_t + 1
+                    pen_flower.right(jiaodu / i_size)
+                    i_curSize = i_curSize + 1
                 pen_flower.right(180 - jiaodu)
                 pen_flower.right(360 / flowerNum)
-                i_n = i_n + 1
+                i_curFlowerNum = i_curFlowerNum + 1
             r = r - 0.5
         pen_flower.bye()
 
@@ -266,9 +294,11 @@ class Num():
 
 if __name__ == '__main__':
     gra = Gra()
-    for i in range(10):
-        gra.drawNum(i*11)
-        gra.clearPen()
+    gra.drawAniCircle()
+    # gra.drawFlower(6, 180)
+    # for i in range(10):
+    #     gra.drawNum(i*11)
+    #     gra.clearPen()
     turtle.mainloop()   
 
 
