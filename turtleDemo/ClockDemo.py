@@ -70,7 +70,18 @@ class Clock(object):
 
         turtle.ontimer(self.tick, 1000)
     
+    def plane(self):
+        turtle.hideturtle()
+        turtle.up()
+        turtle.setx(180)
+        turtle.speed(0)
+        turtle.down()
+        turtle.pencolor(0.2, 0.2, 0.3)
+        turtle.pensize(3)
+        turtle.circle(180, None, 360)
+    
     def draw(self):
+        self.plane()
         self.pen.hideturtle()
         self.pen.tracer(False)
         self.mkHand('secHand', 135)
