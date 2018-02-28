@@ -1,10 +1,5 @@
 # -*- coding:utf-8 -*-
 import turtle
-# turtle.home()
-# # turtle.circle(30)
-# turtle.circle(50, 180)
-# turtle.circle(-50, 100)
-# turtle.circle(40, None, 5)
 turtle.color("red")
 num = 0
 while num < 5:

@@ -238,19 +238,18 @@ def log4(text):
             @functools.wraps(func)
             def wrapper(*args, **kw):
                 print '%s %s():' % (text, func.__name__)
-                return func(*args, **kw)
+                func(*args, **kw)
             return wrapper
         return decorator
 
-@log4
+@log4('resr') #@log相当于调用now = log(now)
 def now(num):
     sum = 1
     for i in range(1,num):
         sum = sum * i
     print sum
 
-
-# now(10)
+now(10)
 
 # fun = log2('exe')(now)
 # fun()
@@ -291,12 +290,28 @@ def main1(nest):
     for sub in nest:
         for item in sub:
             yield item
-
-if __name__ == '__main__':
+import os
+# if __name__ == '__main__':
     # for num in main1(nested):
     #     print type(num)
     # m = main1(nested)
     # print m.next()
     # print m.next()
-    for i in nested, nested1, nested2, nested3:
-        print i
+arr1 = [item for item in range(1,10)if item % 2 == 0] #将[]改成()就可以将数组改为生成器generator
+arr2 = [m + n for m in "ABC" for n in 'XYZ']
+arr3 = [d for d in os.listdir('.')]
+arr4 = {'x':'1', 'y':'2', 'z':3}
+    # for k,v in arr.iteritems():
+    #     print k ,'=', v
+    # y = '''124'''
+    # print isinstance(y, str)
+def func(x):
+    return str(x) + '-Star'
+# print map(func, arr1)
+
+def f1():
+    def f2():
+        return 'test'
+    return f2
+
+# print f1()

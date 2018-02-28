@@ -76,9 +76,12 @@ class Clock(object):
         turtle.setx(180)
         turtle.speed(0)
         turtle.down()
-        turtle.pencolor(0.2, 0.2, 0.3)
+        turtle.fillcolor(0.95,0.95,0.95)
+        turtle.pencolor(0.2, 0.2, 0.2)
         turtle.pensize(3)
+        turtle.begin_fill()
         turtle.circle(180, None, 360)
+        turtle.end_fill()
     
     def draw(self):
         self.plane()

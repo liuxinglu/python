@@ -87,14 +87,16 @@ def readFromJson(path):
 
 def jsonPath2xlsx(path):
     filePaths = os.listdir(path)
+    filePaths = filePaths[1:]
     sheetArr = []
     excel = openpyxl.Workbook()
     for item in filePaths:
-        sheet = excel.create_sheet(unicode(item, "utf-8")[-9: -5], index=0)
+        sheet = excel.create_sheet(unicode(item, "utf-8")[: 6], index=0)
         sheetArr.append(sheet)
 
     index = 0
     for item in filePaths:
+        
         data = readFromJson(path + item)
         length = len(data)
         i, j = 0, 0
