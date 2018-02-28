@@ -30,26 +30,6 @@
 #     print "写入成功"
 #     fh.close()
 
-# def xlsx2json_1():
-#     data = xlrd.open_workbook('/Users/star_xlliu/Documents/test2.xlsx')
-#     tblsh = data.sheets()[0]
-#     rownum = tblsh.nrows
-#     colnum = tblsh.ncols
-#     totalArray = []
-#     arr = []
-#     for i in range(0, colnum):
-#         arr.append(tblsh.cell(1, i).value)
-
-#     for row_index in range(2, rownum):
-#         dic = {}
-#         for col_index in range(0, colnum):
-#             s = tblsh.cell(row_index, col_index).value
-#             dic[arr[col_index]] = s
-#         totalArray.append(dic)
-#     a = json.dumps(totalArray, ensure_ascii=False)
-#     file = codecs.open('/Users/star_xlliu/Documents/file.json', "w", "utf-8")
-#     file.write(a)
-#     file.close()
 
 import os
 import xlrd
