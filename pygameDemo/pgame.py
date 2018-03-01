@@ -36,7 +36,7 @@ while True:
     position = 200, 150, 200, 200;
     start_angle = math.radians(0);
     end_angle = math.radians(180);
-    width = 1;
+    width = 10;
     pygame.draw.arc(screen, color, position, start_angle, end_angle, width);
     
     pygame.display.update();
