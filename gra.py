@@ -11,13 +11,13 @@ class Gra():
         self.rgb_r = 0
         self.rgb_g = 0
         self.rgb_b = 0
-        colormode(255)
 
     def drawAniCircle(self):
         self.pen.pencolor((self.rgb_r, self.rgb_g, self.rgb_b))
         self.pen.pensize(4)
+        self.pen.speed(0)
         while True:
-            self.pen.clear()
+            # self.pen.clear()
             self.drawCir()
 
 
@@ -25,14 +25,14 @@ class Gra():
         self.pen.down()
         r = 0
         
-        while r < 12:
+        while r < 6:
             self.pen.forward(r)
             self.pen.right(5)
-            r = r + 0.02
-            self.rgb_r = (self.rgb_r + 1) % 255
-            self.rgb_g = (self.rgb_g + 1) % 255
-            self.rgb_b = (self.rgb_b + 1) % 255
-            self.pen.pencolor((self.rgb_r, self.rgb_g, self.rgb_b))
+            r = r + 0.01
+            self.rgb_r = (self.rgb_r + 1) % 10
+            self.rgb_g = (self.rgb_g + 1) % 10
+            self.rgb_b = (self.rgb_b + 1) % 10
+            self.pen.pencolor((self.rgb_r/10.0, self.rgb_g/10.0, self.rgb_b/10.0))
         self.pen.up()
         
 
@@ -76,12 +76,6 @@ class Gra():
             t.forward(1)
             i = i + 1
         t.up()
-        de = "i value is "
-        if i == 360:
-            de = de + str(i)
-            self.contents.set(de)
-        else:
-            self.contents.set(de)
 
     def drawGra(self):
         turtle.bgcolor('black')
@@ -90,13 +84,13 @@ class Gra():
         r = 1
         i = 0
         while i < 180:
-            self.__drawCircle(t, r)
+            self._drawCircle(t, r)
             r = r + 0.1
             t.left(6)
             i = i + 1
         t.bye()
     
-    def __drawCircle(self, t_pen, r_num):
+    def _drawCircle(self, t_pen, r_num):
         i_circle = 0
         t_pen.down()
         while i_circle < 36:
