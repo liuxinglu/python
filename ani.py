@@ -1,3 +1,4 @@
+#coding:utf-8
 import math
 
 class Ani():
@@ -7,7 +8,8 @@ class Ani():
     
 
 def main():
-    pass
+    s = '中国'
+    print s
 
 if __name__ == '__main__':
     main()

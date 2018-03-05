@@ -2,6 +2,7 @@
 import sys
 import random
 import pygame
+import time
 from pygame.locals import *
 
 def print_text(font, x, y, text, color=(25, 25, 255)):
@@ -40,6 +41,10 @@ while True:
         if keys[K_ESCAPE]:
             pygame.quit()
             sys.exit()
+        elif keys[K_RIGHT]:
+            pos_x += 10
+        elif keys[K_LEFT]:
+            pos_x -= 10
         screen.fill(white)
 
         if pos_x < 0:
@@ -49,6 +54,7 @@ while True:
         pygame.draw.rect(screen, (30, 0, 0), (pos_x, pos_y, 120, 40), 0)
 
         bomb_y += vel_y
+        # time.sleep(0.1)
         if bomb_y > 500:
             bomb_x = random.randint(0, 500)
             bomb_y = -50
