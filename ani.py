@@ -8,7 +8,7 @@ class Ani():
     
 
 def main():
-    s = '中国'
+    s = u'中国'
     print s
 
 if __name__ == '__main__':
