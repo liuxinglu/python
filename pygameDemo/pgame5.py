@@ -45,7 +45,7 @@ while True:
             pos_x += 10
         elif keys[K_LEFT]:
             pos_x -= 10
-        screen.fill(white)
+        screen.fill(white)      
 
         if pos_x < 0:
             pos_x = 0
@@ -71,7 +71,7 @@ while True:
         pygame.draw.circle(screen, ((score * 3 + 80) % 255, (score * 3 + 80) % 255, (score + 10) % 255), (bomb_x, bomb_y), 30, 0)
         print_text(font1, 0, 0, "LIVES:" + str(lives))
         print_text(font1, 500, 0, "SCORE:" + str(score))
-        pygame.display.update()
+        pygame.display.update()  
     
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONUP:
