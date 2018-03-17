@@ -246,6 +246,8 @@ class Num():
             self.pen.right(90)
 
     def hUnit(self, count):
+        self.pen.fillcolor('yellow')
+        self.pen.begin_fill()
         for i in range(count):
             self.pen.down()
             self.pen.left(45)
@@ -260,12 +262,14 @@ class Num():
             self.pen.forward(40)
             self.pen.right(45)
             self.pen.forward(10)
-            self.pen.fillcolor('yellow')
             self.pen.up()
             self.pen.right(135)
             self.pen.forward(self.unitDis)            
+        self.pen.end_fill()
 
     def vUnit(self, count):
+        self.pen.fillcolor('yellow')
+        self.pen.begin_fill()
         for i in range(count):
             self.pen.down()
             self.pen.right(45)
@@ -285,14 +289,15 @@ class Num():
             self.pen.right(135)
             self.pen.forward(self.unitDis)
             self.pen.left(90)
+        self.pen.end_fill()
 
 if __name__ == '__main__':
     gra = Gra()
-    gra.drawAniCircle()
+    # gra.drawAniCircle()
     # gra.drawFlower(6, 180)
-    # for i in range(10):
-    #     gra.drawNum(i*11)
-    #     gra.clearPen()
+    for i in range(10):
+        gra.drawNum(i*11)
+        gra.clearPen()
     turtle.mainloop()   
 
 
