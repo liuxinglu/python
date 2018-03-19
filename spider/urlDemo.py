@@ -1,5 +1,6 @@
 #coding:utf-8
 import urllib2
+import urllib
 import os
 import codecs
 import sys
@@ -12,9 +13,12 @@ import cStringIO
 # import matplotlib.pyplot as plt
 reload(sys)
 sys.setdefaultencoding("utf-8")
-req = urllib2.Request("http://image.baidu.com/search/index?ct=201326592&cl=2&st=-1&lm=-1&nc=1&ie=utf-8&tn=baiduimage&ipn=r&rps=1&pv=&fm=rs1&word=%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87&oriquery=%E5%9B%BE%E7%89%87&ofr=%E5%9B%BE%E7%89%87&sensitive=0")
+content = raw_input("content?:\n")
+content = urllib.quote(content.decode(sys.stdin.encoding).encode('gbk'))
+url = "http://image.baidu.com/search/index?tn=baiduimage&ct=201326592&lm=-1&cl=2&ie=gbk&word=" + content + "&fr=ala&ala=1&alatpl=adress&pos=0&hs=2&xthttps=000000"
+req = urllib2.Request(url)
 response = urllib2.urlopen(req)
-path = "/Users/qijie/Documents/lxl/test/"
+path = "/Users/star_xlliu/Documents/lxl/test/"
 p = re.compile(r"\"ObjURL\":\".+?(?=,\")")
 lst = p.findall(response.read())
 lst2 = []
@@ -38,7 +42,19 @@ for i in range(len(lst)):
     except IOError:
         continue
     lst2.append(s)
-    # img.save(path + "img" + str(i) + imgType)
+    try:
+        img = img.convert('RGB')
+        img.save(path + "img" + str(i) + imgType)
+    except IOError:
+        try:
+            os.mkdir(path)
+        except OSError, e:
+            if e.errno != os.errno.EEXIST:
+                raise
+            pass
+        img = img.convert('RGB')
+        img.save(path + "img" + str(i) + imgType)
+fh = ''
 try:
     file = "image.txt"
     fh = codecs.open(path + file, "w", 'utf-8')
