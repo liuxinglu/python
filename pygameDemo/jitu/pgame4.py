@@ -2,6 +2,7 @@
 from datetime import datetime, date, time
 import pygame, sys, random, math
 from pygame.locals import *
+import EventManager
 
 class ImageButton(object):
     def __init__(self, *args):
