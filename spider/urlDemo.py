@@ -1,4 +1,5 @@
-#coding:utf-8
+#!/usr/bin/env Python
+# coding=utf-8
 import urllib2
 import urllib
 import os
@@ -14,11 +15,23 @@ import cStringIO
 reload(sys)
 sys.setdefaultencoding("utf-8")
 content = raw_input("content?:\n")
-content = urllib.quote(content.decode(sys.stdin.encoding).encode('gbk'))
+content = urllib.quote(content.decode(sys.stdin.encoding).encode('utf-8'))
 url = "http://image.baidu.com/search/index?tn=baiduimage&ct=201326592&lm=-1&cl=2&ie=gbk&word=" + content + "&fr=ala&ala=1&alatpl=adress&pos=0&hs=2&xthttps=000000"
 req = urllib2.Request(url)
 response = urllib2.urlopen(req)
 path = "/Users/star_xlliu/Documents/lxl/test/"
+# fh = ''
+# try:
+#     file = "imageSrc.txt"
+#     fh = codecs.open(path + file, "w", 'utf-8')
+# except IOError:
+#     os.mkdir(path)
+#     fh = codecs.open(path + file, "w", 'utf-8')
+# finally:
+#     fh.write(response.read())
+#     fh.close()
+#     print "写入成功"
+
 p = re.compile(r"\"ObjURL\":\".+?(?=,\")")
 lst = p.findall(response.read())
 lst2 = []

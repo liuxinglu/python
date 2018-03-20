@@ -3,9 +3,15 @@ from datetime import datetime, date, time
 import pygame, sys, random, math
 from pygame.locals import *
 
-today = datetime.today();
-print today;
-print today.date();
+class ImageButton(object):
+    def __init__(self, *args):
+        super(ImageButton, self).__init__(*args))
+    
+    def setImage(imagePath):
+        icon = pygame.image.load(imagePath).convert_alpha()
+
+        
+
 pygame.init();
 screen = pygame.display.set_mode((1136, 640));
 pygame.display.set_caption("鸡兔同笼");
