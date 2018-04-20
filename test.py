@@ -316,17 +316,21 @@ def f1():
 
 # print f1()
 
-# table = {'liu':1, 'xing':2, 'lu':'3'}
+table = {'liu':1, 'xing':2, 'lu':'3'}
 # s = 'xing:{0[lu]:s}; liu:{0[liu]:d};'.format(table)
 # print s
+
 
 import random
 import sys
 arr = [1,2,3,4,5,6,7]
 reload(sys)
-print sys.getdefaultencoding()
-print sys.stdout.encoding
+# print sys.getdefaultencoding()
+# print sys.stdout.encoding
 # sys.setdefaultencoding('utf8')
 # print random.choice("世界上最好的语言"), random.randrange(1, 100, 2), random.sample(arr, 3),arr,random.shuffle(arr), arr,
-s = "世界上最好的语言"
-print s
+# s = "世界上最好的语言"
+# print s
+arr2 = [1,2,3]
+for i in arr2:
+    print i

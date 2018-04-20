@@ -45,4 +45,6 @@ while True:
     keys = pygame.key.get_pressed();
     if keys[K_ESCAPE]:
         sys.exit();
+    x, y = pygame.mouse.get_pos()
+    
     pygame.display.update();

@@ -294,10 +294,10 @@ class Num():
 if __name__ == '__main__':
     gra = Gra()
     # gra.drawAniCircle()
-    # gra.drawFlower(6, 180)
-    for i in range(10):
-        gra.drawNum(i*11)
-        gra.clearPen()
+    gra.drawFlower(6, 180)
+    # for i in range(10):
+    #     gra.drawNum(i*11)
+    #     gra.clearPen()
     turtle.mainloop()   
 
 
